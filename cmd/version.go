@@ -5,13 +5,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var version = "0.0.1"
+var Version = "dev"
 
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print the version number of sd",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("sd CLI v%s\n", version)
+		fmt.Printf("sd CLI v%s\n", Version)
 	},
 }
 

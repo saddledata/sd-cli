@@ -3,6 +3,7 @@ module github.com/saddledata/sd-cli
 go 1.25.8
 
 require (
+	github.com/saddledata/pii-hound v0.1.9
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.21.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -102,7 +103,6 @@ require (
 	github.com/richardlehane/mscfb v1.0.6 // indirect
 	github.com/richardlehane/msoleps v1.0.6 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
-	github.com/saddledata/pii-hound v0.1.8 // indirect
 	github.com/sagikazarmark/locafero v0.11.0 // indirect
 	github.com/schollz/progressbar/v3 v3.19.0 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
@@ -153,5 +153,3 @@ require (
 	modernc.org/memory v1.11.0 // indirect
 	modernc.org/sqlite v1.48.1 // indirect
 )
-
-replace github.com/saddledata/pii-hound => ../pii-hound
