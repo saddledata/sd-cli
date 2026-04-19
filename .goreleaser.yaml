@@ -23,11 +23,11 @@ builds:
       - -s -w -X github.com/saddledata/sd-cli/cmd.Version={{.Version}}
 
 archives:
-  - format: tar.gz
+  - formats: ["tar.gz"]
     # use zip for windows archives
     format_overrides:
       - goos: windows
-        format: zip
+        formats: ["zip"]
     name_template: >-
       {{ .ProjectName }}_
       {{- title .Os }}_
@@ -39,7 +39,7 @@ checksum:
   name_template: 'checksums.txt'
 
 snapshot:
-  name_template: "{{ incpatch .Version }}-next"
+  version_template: "{{ incpatch .Version }}-next"
 
 changelog:
   sort: asc
@@ -48,13 +48,10 @@ changelog:
       - '^docs:'
       - '^test:'
 
-brews:
+homebrew_casks:
   - name: sd
     repository:
       owner: saddledata
       name: homebrew-tap
-    directory: Formula
     homepage: "https://github.com/saddledata/sd-cli"
     description: "sd is the official command-line interface for Saddle Data."
-    test: |
-      system "#{bin}/sd version"
