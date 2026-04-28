@@ -141,7 +141,12 @@ var tunnelServeCmd = &cobra.Command{
 		// 3. Connect to Gateway URL setup
 		gwURL := gatewayUrl
 		if gwURL == "" {
-			gwURL = "ws://localhost:8082"
+			parsedApiURL, err := url.Parse(ctx.ApiUrl)
+			if err == nil && parsedApiURL.Hostname() == "api.saddledata.io" {
+				gwURL = "ws://direct.tunnels.saddledata.io:8082"
+			} else {
+				gwURL = "ws://localhost:8082"
+			}
 		}
 
 		parsedGwURL, err := url.Parse(gwURL)
@@ -236,7 +241,7 @@ var tunnelServeCmd = &cobra.Command{
 func init() {
 	tunnelServeCmd.Flags().StringVar(&localHost, "host", "", "Override the local database host")
 	tunnelServeCmd.Flags().IntVar(&localPort, "port", 0, "Override the local database port")
-	tunnelServeCmd.Flags().StringVar(&gatewayUrl, "gateway-url", "ws://localhost:8082", "The URL of the Saddle Tunnel Gateway")
+	tunnelServeCmd.Flags().StringVar(&gatewayUrl, "gateway-url", "", "The URL of the Saddle Tunnel Gateway")
 
 	tunnelCmd.AddCommand(tunnelServeCmd)
 	RootCmd.AddCommand(tunnelCmd)
